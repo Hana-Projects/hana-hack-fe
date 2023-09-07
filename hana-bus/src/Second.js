@@ -2,6 +2,8 @@ import "./App.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import PlaceSearch from "./PlaceSearch";
+import back from "./imgs/left-arrow.png";
+import Fade from "./Fade";
 
 function Second() {
   const movePage = useNavigate();
@@ -38,39 +40,48 @@ function Second() {
   const handleInputChange = (value) => {
     setSearchValue(value);
   };
-  console.log("ddddddd", places);
+  //   console.log("ddddddd", places);
   return (
-    <div>
-      <div className="mobile-screen">
-        <h1 className="text-center" onClick={navigateToHome}>
-          뒤로가기
-        </h1>
-        <h1>가시는 병원</h1>
-        <input type="text" value={query} onChange={handleChange} placeholder="장소를 검색하세요..." />
-        {searchValue ? (
-          <PlaceSearch
-            searchPlace={searchValue}
-            setPlaces={setPlaces}
-            onPlaceClick={(placeName) => setQuery(placeName)}
-          />
-        ) : null}
+    <Fade>
+      <div>
+        <div className="mobile-screen">
+          <div style={{ display: "flex", alignItems: "center", paddingTop: "60px" }}>
+            <img style={{ height: "30px", margin: "5px" }} src={back} alt="back" />
+            <h1 className="moveback" onClick={navigateToHome}>
+              뒤로가기
+            </h1>
+          </div>
+          <h1 style={{ marginTop: "40px" }}>가시는 병원</h1>
+          <input type="text" value={query} onChange={handleChange} placeholder="병원 이름 입력" />
+          {searchValue ? (
+            <PlaceSearch
+              searchPlace={searchValue}
+              setPlaces={setPlaces}
+              onPlaceClick={(placeName) => setQuery(placeName)}
+            />
+          ) : null}
 
-        <h1>택시타는 곳</h1>
-        <input type="text" value={query2} onChange={handleChange2} placeholder="장소를 검색하세요..." />
-        {searchValue2 ? (
-          <PlaceSearch
-            searchPlace={searchValue2}
-            setPlaces={setPlaces2}
-            onPlaceClick={(placeName) => setQuery2(placeName)}
-          />
-        ) : null}
-        <h1>예상 소요시간</h1>
-        {searchValue2 ? <h1 style={{ color: "#2B9F5E" }}>약 32분</h1> : null}
-        <div className="first-btn" onClick={navigateToThree}>
-          택시 부르기
+          <h1>택시타는 곳</h1>
+          <input type="text" value={query2} onChange={handleChange2} placeholder="택시를 탈 장소 입력" />
+          {searchValue2 ? (
+            <PlaceSearch
+              searchPlace={searchValue2}
+              setPlaces={setPlaces2}
+              onPlaceClick={(placeName) => setQuery2(placeName)}
+            />
+          ) : null}
+          <h1>예상 소요시간</h1>
+          {searchValue2 ? (
+            <Fade>
+              <h1 style={{ color: "#2B9F5E" }}>약 32분</h1>
+            </Fade>
+          ) : null}
+          <div className="first-btn" onClick={navigateToThree}>
+            택시 부르기
+          </div>
         </div>
       </div>
-    </div>
+    </Fade>
   );
 }
 
