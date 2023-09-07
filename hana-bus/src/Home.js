@@ -8,7 +8,7 @@ function Home() {
     movePage("/Second");
   };
   return (
-    <div className="App">
+    <div>
       <div className="mobile-screen">
         <h1 className="text-center">동행택시</h1>
         <div className="first-btn" onClick={navigateToSecond}>
