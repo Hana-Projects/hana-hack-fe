@@ -15,14 +15,23 @@ function Second() {
   };
 
   const [query, setQuery] = useState("");
+  const [query2, setQuery2] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [searchValue2, setSearchValue2] = useState("");
 
   const [places, setPlaces] = useState([]);
+  const [places2, setPlaces2] = useState([]);
 
   const handleChange = (e) => {
     const value = e.target.value;
     setQuery(value);
     setSearchValue(value); // 이 부분을 추가
+    // console.log("dd ", value);
+  };
+  const handleChange2 = (e) => {
+    const value = e.target.value;
+    setQuery2(value);
+    setSearchValue2(value); // 이 부분을 추가
     // console.log("dd ", value);
   };
   console.log("value : ", searchValue);
@@ -42,12 +51,21 @@ function Second() {
           <PlaceSearch
             searchPlace={searchValue}
             setPlaces={setPlaces}
-            onPlaceClick={(placeName) => console.log(placeName)}
+            onPlaceClick={(placeName) => setQuery(placeName)}
           />
         ) : null}
 
         <h1>택시타는 곳</h1>
+        <input type="text" value={query2} onChange={handleChange2} placeholder="장소를 검색하세요..." />
+        {searchValue2 ? (
+          <PlaceSearch
+            searchPlace={searchValue2}
+            setPlaces={setPlaces2}
+            onPlaceClick={(placeName) => setQuery2(placeName)}
+          />
+        ) : null}
         <h1>예상 소요시간</h1>
+        {searchValue2 ? <h1 style={{ color: "#2B9F5E" }}>약 32분</h1> : null}
         <div className="first-btn" onClick={navigateToThree}>
           택시 부르기
         </div>
