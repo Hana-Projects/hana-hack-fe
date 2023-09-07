@@ -38,11 +38,13 @@ function Second() {
         </h1>
         <h1>가시는 병원</h1>
         <input type="text" value={query} onChange={handleChange} placeholder="장소를 검색하세요..." />
-        <PlaceSearch
-          searchPlace={searchValue}
-          setPlaces={setPlaces}
-          onPlaceClick={(placeName) => console.log(placeName)}
-        />
+        {searchValue ? (
+          <PlaceSearch
+            searchPlace={searchValue}
+            setPlaces={setPlaces}
+            onPlaceClick={(placeName) => console.log(placeName)}
+          />
+        ) : null}
 
         <h1>택시타는 곳</h1>
         <h1>예상 소요시간</h1>
